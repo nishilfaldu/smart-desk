@@ -7,14 +7,14 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { CalendarDateRangePicker } from "@/examples/components/date-range-picker"
-import { MainNav } from "@/examples/components/main-nav"
-import { Overview } from "@/examples/components/overview"
-import { RecentSales } from "@/examples/components/recent-sales"
-import { Search } from "@/examples/components/search"
-import TeamSwitcher from "@/examples/components/team-switcher"
-import { UserNav } from "@/examples/components/user-nav"
+import { MainNav } from "./components/main-nav"
+import { Overview } from "./components/overview"
+import { RecentSales } from "./components/recent-sales"
+import { Search } from "./components/search"
+import TeamSwitcher from "./components/team-switcher"
+import { UserNav } from "./components/user-nav"
 import { Button } from "@/registry/default/ui/button"
+import { CalendarDateRangePicker } from "@/app/dashboard/components/date-range-picker"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
