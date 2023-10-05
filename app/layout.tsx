@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { ExamplesNav } from "@/components/ExamplesNav";
-import { buttonVariants } from "@/registry/new-york/ui/button";
+import { buttonVariants } from "@/registry/default/ui/button";
 
 
 
@@ -78,7 +78,6 @@ export default function RootLayout({
               </section>
             </div>
           </>
-          {children}
         </ThemeProvider>
       </body>
     </html>

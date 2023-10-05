@@ -10,37 +10,37 @@ import { ScrollArea, ScrollBar } from "./ui/scroll-area"
 const examples = [
   {
     name: "Dashboard",
-    href: "/examples/dashboard",
+    href: "/dashboard",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/dashboard",
   },
   {
     name: "Cards",
-    href: "/examples/cards",
+    href: "/cards",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/cards",
   },
   {
     name: "Tasks",
-    href: "/examples/tasks",
+    href: "/tasks",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/tasks",
   },
   {
     name: "Playground",
-    href: "/examples/playground",
+    href: "/playground",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/playground",
   },
   {
     name: "Forms",
-    href: "/examples/forms",
+    href: "/forms",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/forms",
   },
   {
     name: "Music",
-    href: "/examples/music",
+    href: "/music",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/music",
   },
   {
     name: "Authentication",
-    href: "/examples/authentication",
+    href: "/authentication",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/authentication",
   },
 ]
