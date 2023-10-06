@@ -10,6 +10,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { ExamplesNav } from "@/components/ExamplesNav";
 import { buttonVariants } from "@/registry/default/ui/button";
+import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
 
 
 
@@ -79,6 +80,7 @@ export default function RootLayout({
             </div>
           </>
         </ThemeProvider>
+        <DefaultToaster/>
       </body>
     </html>
   );
