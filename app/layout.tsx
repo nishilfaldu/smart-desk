@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { ExamplesNav } from "@/components/ExamplesNav";
 import { buttonVariants } from "@/registry/default/ui/button";
 import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
+import Editor from "@/components/Editor";
 
 
 
@@ -81,6 +82,7 @@ export default function RootLayout({
           </>
         </ThemeProvider>
         <DefaultToaster/>
+        {/* {/* <Editor/> */}
       </body>
     </html>
   );
