@@ -54,9 +54,9 @@ export default function CardsPage() {
       </div>
       <div className="hidden items-start justify-center gap-6 rounded-lg p-8 md:grid lg:grid-cols-2 xl:grid-cols-3">
         <div className="col-span-2 grid items-start gap-6 lg:col-span-1">
-          <DemoContainer>
+          {/* <DemoContainer>
             <DemoCreateAccount />
-          </DemoContainer>
+          </DemoContainer> */}
           <DemoContainer>
             <DemoPaymentMethod />
           </DemoContainer>
@@ -65,12 +65,12 @@ export default function CardsPage() {
           <DemoContainer>
             <DemoTeamMembers />
           </DemoContainer>
-          <DemoContainer>
+          {/* <DemoContainer>
             <DemoShareDocument />
-          </DemoContainer>
-          <DemoContainer>
+          </DemoContainer> */}
+          {/* <DemoContainer>
             <DemoDatePicker />
-          </DemoContainer>
+          </DemoContainer> */}
           <DemoContainer>
             <DemoNotifications />
           </DemoContainer>
@@ -79,9 +79,9 @@ export default function CardsPage() {
           <DemoContainer>
             <DemoReportAnIssue />
           </DemoContainer>
-          <DemoContainer>
+          {/* <DemoContainer>
             <DemoGithub />
-          </DemoContainer>
+          </DemoContainer> */}
           <DemoContainer>
             <DemoCookieSettings />
           </DemoContainer>

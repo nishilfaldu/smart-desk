@@ -14,8 +14,8 @@ const examples = [
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/dashboard",
   },
   {
-    name: "Cards",
-    href: "/cards",
+    name: "General",
+    href: "/general",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/cards",
   },
   {

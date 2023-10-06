@@ -61,7 +61,6 @@ export default function PlaygroundPage() {
             <PresetSelector presets={presets} />
             <PresetSave />
             <div className="hidden space-x-2 md:flex">
-              <CodeViewer />
               <PresetShare />
             </div>
             <PresetActions />
@@ -249,10 +248,7 @@ export default function PlaygroundPage() {
                     </TabsTrigger>
                   </TabsList>
                 </div>
-                <ModelSelector types={types} models={models} />
-                <TemperatureSelector defaultValue={[0.56]} />
-                <MaxLengthSelector defaultValue={[256]} />
-                <TopPSelector defaultValue={[0.9]} />
+                {/* <ModelSelector types={types} models={models} /> */}
               </div>
               <div className="md:order-1">
                 <TabsContent value="complete" className="mt-0 border-0 p-0">
