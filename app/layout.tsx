@@ -78,7 +78,6 @@ export default function RootLayout({
               </section>
             </div>
           </>
-          {children}
         </ThemeProvider>
       </body>
     </html>
