@@ -85,12 +85,10 @@ export default function PlaygroundPage() {
         <div className="container flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
           <h2 className="text-lg font-semibold">Playground</h2>
           <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-            {/* <PresetSelector presets={presets} /> */}
             <PresetSave />
             <div className="hidden space-x-2 md:flex">
               <PresetShare />
             </div>
-            {/* <PresetActions /> */}
           </div>
         </div>
         <Separator />
@@ -282,12 +280,12 @@ export default function PlaygroundPage() {
                 <TabsContent value="complete" className="mt-0 border-0 p-0">
                   <div className="flex h-full flex-col space-y-4">
                     <Textarea
-                      placeholder="Write a tagline for an ice cream shop"
+                      placeholder="Write your heart out"
                       className="min-h-[400px] flex-1 p-4 md:min-h-[700px] lg:min-h-[700px]"
                     />
-                    <DemoContainer>
+                    {/* <DemoContainer>
                       <DemoShareDocument />
-                    </DemoContainer>
+                    </DemoContainer> */}
                     <div className="flex items-center space-x-2">
                       <Button>Submit</Button>
                       <Button variant="secondary">

@@ -29,7 +29,7 @@ export function PresetShare() {
             </Label>
             <Input
               id="link"
-              defaultValue="https://platform.openai.com/playground/p/7bbKYQvsVkNmVb8NGcdUOLae?model=text-davinci-003"
+              defaultValue="https://platform.smartdesk.com/workspace/p/7bbKYQvsVkNmVb8NGcdUOLae?text=sampletextdescription"
               readOnly
               className="h-9"
             />

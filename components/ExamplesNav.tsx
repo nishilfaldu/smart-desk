@@ -14,29 +14,19 @@ const examples = [
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/dashboard",
   },
   {
-    name: "General",
-    href: "/general",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/cards",
-  },
-  {
     name: "Tasks",
     href: "/tasks",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/tasks",
   },
   {
-    name: "Playground",
+    name: "Workspace",
     href: "/playground",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/playground",
   },
   {
-    name: "Forms",
-    href: "/forms",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/forms",
-  },
-  {
-    name: "Music",
-    href: "/music",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/music",
+    name: "Settings",
+    href: "/settings",
+    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/settings",
   },
   {
     name: "Authentication",
