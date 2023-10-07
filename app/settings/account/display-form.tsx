@@ -19,28 +19,20 @@ import { toast } from "@/components/ui/use-toast"
 
 const items = [
   {
-    id: "recents",
-    label: "Recents",
+    id: "dashboard",
+    label: "Dashboard",
   },
   {
-    id: "home",
-    label: "Home",
+    id: "tasks",
+    label: "Tasks",
   },
   {
-    id: "applications",
-    label: "Applications",
+    id: "workspace",
+    label: "Workspace",
   },
   {
-    id: "desktop",
-    label: "Desktop",
-  },
-  {
-    id: "downloads",
-    label: "Downloads",
-  },
-  {
-    id: "documents",
-    label: "Documents",
+    id: "settings",
+    label: "Settings",
   },
 ] as const
 
@@ -125,7 +117,7 @@ export function DisplayForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Update display</Button>
+        {/* <Button type="submit">Update display</Button> */}
       </form>
     </Form>
   )
