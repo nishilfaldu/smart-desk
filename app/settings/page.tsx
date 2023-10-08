@@ -19,14 +19,13 @@ export default function SettingsAccountPage() {
       <Separator />
       <AccountForm />
       <Separator />
-      <ProfileForm />
-      <Separator />
+      {/* <ProfileForm /> */}
+      {/* <Separator /> */}
       <AppearanceForm />
       <Separator />
       <NotificationsForm />
       <Separator />
       <DisplayForm />
-      <Button type="submit">Update account</Button>
     </div>
   )
 }

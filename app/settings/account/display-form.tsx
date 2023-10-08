@@ -117,7 +117,7 @@ export function DisplayForm() {
             </FormItem>
           )}
         />
-        {/* <Button type="submit">Update display</Button> */}
+        <Button type="submit">Update display</Button>
       </form>
     </Form>
   )

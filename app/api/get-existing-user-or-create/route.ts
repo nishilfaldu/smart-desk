@@ -27,11 +27,11 @@ export async function GET(request: Request) {
       } else {
       // User with the email doesn't exist, insert a new user
       console.log("here")
-      const newUser = await sql`INSERT INTO Users2 (Email, Password, Name, Username) VALUES (${email}, ${password}, "", "");`;
+      const newUser = await sql`INSERT INTO Users2 (Email, Password, Name, Username) VALUES (${email}, ${password}, ${email}, ${email});`;
       return NextResponse.json({ newUser }, { status: 200 });
     }
   } catch (error) {
-    console.log("here with error")
+    console.log("here with error", error)
     return NextResponse.json({ error }, { status: 500 });
   }  
 }

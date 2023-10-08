@@ -33,17 +33,6 @@ import {
 } from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
 
-const languages = [
-  { label: "English", value: "en" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Russian", value: "ru" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
-] as const
 
 const accountFormSchema = z.object({
   name: z
@@ -54,12 +43,14 @@ const accountFormSchema = z.object({
     .max(30, {
       message: "Name must not be longer than 30 characters.",
     }),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  language: z.string({
-    required_error: "Please select a language.",
-  }),
+  username: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Name must not be longer than 30 characters.",
+    }),
 })
 
 type AccountFormValues = z.infer<typeof accountFormSchema>
@@ -77,15 +68,50 @@ export function AccountForm() {
   })
 
   function onSubmit(data: AccountFormValues) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+    console.log(data);
+
+    // toast({
+    //   title: "You submitted the following values:",
+    //   description: (
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // })
+
+    updateUser('nishilfald@outlook.com', data.username, data.name);
+
   }
+
+  const updateUser = async (email: string, username: string, name: string) => {
+    try {
+      // Create an object with the data to update
+      // const data = {
+      //   email: email,
+      //   username: username,
+      //   name: name,
+      // };
+      
+      const apiUrl = `http://localhost:3000/api/update-existing-user?email=${email}&username=${username}&name=${name}`;
+      // Make the PUT request
+      const response = await fetch(apiUrl);
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log('User updated successfully:', result.message);
+        // Handle success, e.g., show a success message to the user
+      } else {
+        const errorData = await response.json();
+        console.error('Error updating user:', errorData.error);
+        // Handle error, e.g., display an error message to the user
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+      // Handle unexpected errors, e.g., network issues
+    }
+  };
+  
+  
 
   return (
     <Form {...form}>
@@ -107,7 +133,23 @@ export function AccountForm() {
             </FormItem>
           )}
         />
-        {/* <Button type="submit">Update account</Button> */}
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="shadcn" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Update account</Button>
       </form>
     </Form>
   )
