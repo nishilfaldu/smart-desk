@@ -57,19 +57,19 @@ const groups = [
       },
     ],
   },
-  {
-    label: "Teams",
-    teams: [
-      {
-        label: "Acme Inc.",
-        value: "acme-inc",
-      },
-      {
-        label: "Monsters Inc.",
-        value: "monsters",
-      },
-    ],
-  },
+  // {
+  //   label: "Teams",
+  //   teams: [
+  //     {
+  //       label: "Acme Inc.",
+  //       value: "acme-inc",
+  //     },
+  //     {
+  //       label: "Monsters Inc.",
+  //       value: "monsters",
+  //     },
+  //   ],
+  // },
 ]
 
 type Team = (typeof groups)[number]["teams"][number]
@@ -111,8 +111,8 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         <PopoverContent className="w-[200px] p-0">
           <Command>
             <CommandList>
-              <CommandInput placeholder="Search team..." />
-              <CommandEmpty>No team found.</CommandEmpty>
+              <CommandInput placeholder="Search user..." />
+              <CommandEmpty>No user found.</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
                   {group.teams.map((team) => (
@@ -146,8 +146,8 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                 </CommandGroup>
               ))}
             </CommandList>
-            <CommandSeparator />
-            <CommandList>
+            {/* <CommandSeparator /> */}
+            {/* <CommandList>
               <CommandGroup>
                 <DialogTrigger asChild>
                   <CommandItem
@@ -161,7 +161,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>
-            </CommandList>
+            </CommandList> */}
           </Command>
         </PopoverContent>
       </Popover>

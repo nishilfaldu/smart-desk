@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   try {
     if (!email || !password) throw new Error('Email and Password are required');
     // Check if the user with the given email exists in the database
-    const existingUser = await sql`SELECT * FROM Users WHERE Email = ${email};`;
+    const existingUser = await sql`SELECT * FROM Users2 WHERE Email = ${email};`;
     console.log(existingUser);
 
     if (existingUser.rows.length > 0) {
@@ -27,7 +27,7 @@ export async function GET(request: Request) {
       } else {
       // User with the email doesn't exist, insert a new user
       console.log("here")
-      const newUser = await sql`INSERT INTO Users (Email, Password) VALUES (${email}, ${password});`;
+      const newUser = await sql`INSERT INTO Users2 (Email, Password, Name, Username) VALUES (${email}, ${password}, "", "");`;
       return NextResponse.json({ newUser }, { status: 200 });
     }
   } catch (error) {
