@@ -45,13 +45,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     event.preventDefault()
     // setIsLoading(true)
 
+    console.log(process.env.PRODUCTION);
+
     if (emailRef.current && passwordRef.current) {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       
       let apiUrl = `http://localhost:3000/api/get-existing-user-or-create?email=${email}&password=${password}`;
-      if(process.env.PRODUCTION) {
-        apiUrl = `http://${process.env.VERCEL_DEPLOYMENT_LINK}/api/get-existing-user-or-create?email=${email}&password=${password}`
+      if(process.env.NEXT_PUBLIC_PRODUCTION) {
+        apiUrl = `http://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/get-existing-user-or-create?email=${email}&password=${password}`
       }
       fetch(apiUrl)
         .then((response) => {
