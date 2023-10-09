@@ -75,7 +75,10 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 
   const getAllUsers = async () => {
     try {
-      const apiUrl = "http://localhost:3000/api/get-all-users";
+      let apiUrl = "http://localhost:3000/api/get-all-users";
+      if(process.env.PRODUCTION) {
+        apiUrl = `http://${process.env.VERCEL_DEPLOYMENT_LINK}/api/get-all-users`
+      }
       const response = await fetch(apiUrl);
     if (response.ok) {
       const result = await response.json();

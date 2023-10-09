@@ -37,7 +37,7 @@ const examples = [
   {
     name: "Authentication",
     id: "authentication",
-    href: "/authentication",
+    href: "/",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/authentication",
   },
 ]

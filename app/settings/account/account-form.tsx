@@ -109,7 +109,10 @@ export function AccountForm() {
       //   name: name,
       // };
       
-      const apiUrl = `http://localhost:3000/api/update-existing-user?email=${email}&username=${username}&name=${name}`;
+      let apiUrl = `http://localhost:3000/api/update-existing-user?email=${email}&username=${username}&name=${name}`;
+      if(process.env.PRODUCTION) {
+        apiUrl = `http://${process.env.VERCEL_DEPLOYMENT_LINK}/api/update-existing-user?email=${email}&username=${username}&name=${name}`
+      }
       // Make the PUT request
       const response = await fetch(apiUrl);
   

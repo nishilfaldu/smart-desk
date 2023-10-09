@@ -49,8 +49,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       
-      const apiUrl = `http://localhost:3000/api/get-existing-user-or-create?email=${email}&password=${password}`;
-
+      let apiUrl = `http://localhost:3000/api/get-existing-user-or-create?email=${email}&password=${password}`;
+      if(process.env.PRODUCTION) {
+        apiUrl = `http://${process.env.VERCEL_DEPLOYMENT_LINK}/api/get-existing-user-or-create?email=${email}&password=${password}`
+      }
       fetch(apiUrl)
         .then((response) => {
           // Check if the response status is OK (200)
