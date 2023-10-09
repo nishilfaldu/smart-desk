@@ -8,13 +8,38 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
+import { message, Space } from 'antd';
+import { useRouter } from "next/navigation"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+  const [messageApi, contextHolder] = message.useMessage();
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const emailRef = React.useRef(null);
-  const passwordRef = React.useRef(null);
+  const emailRef = React.useRef<HTMLInputElement | null>(null);
+  const passwordRef = React.useRef<HTMLInputElement | null>(null);
+  const router = useRouter();
+
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Logged in successfully',
+    });
+  };
+
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'There was an error while logging in',
+    });
+  };
+
+  const warning = () => {
+    messageApi.open({
+      type: 'warning',
+      content: 'This is a warning message',
+    });
+  };
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
@@ -30,6 +55,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         .then((response) => {
           // Check if the response status is OK (200)
           if (response.status === 500) {
+            error();
             throw new Error(`HTTP error! Status: ${response.status}.`);
           }
           console.log(response);
@@ -39,6 +65,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         .then((data) => {
           // Handle the JSON data returned from the server
           console.log('Data received:', data);
+          success();
+          router.push("/dashboard");
           toast({
             title: "You submitted the following values:",
             description: (
@@ -51,12 +79,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         .catch((error) => {
           // Handle any errors that occurred during the fetch
           console.error('Fetch error:', error);
+          error();
         });
     }
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
+      {contextHolder}
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1 gap-y-1">

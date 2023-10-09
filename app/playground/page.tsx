@@ -110,7 +110,7 @@ export default function PlaygroundPage() {
                       instructions to edit it.
                     </HoverCardContent>
                   </HoverCard>
-                    <TabsList className="grid grid-cols-3">
+                    <TabsList className="grid grid-cols-2">
                       <TabsTrigger value="complete">
                         <span className="sr-only">Complete</span>
                         <svg
@@ -177,7 +177,7 @@ export default function PlaygroundPage() {
                           ></rect>
                         </svg>
                       </TabsTrigger>
-                      <TabsTrigger value="insert">
+                      {/* <TabsTrigger value="insert">
                         <span className="sr-only">Insert</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +216,7 @@ export default function PlaygroundPage() {
                             fill="currentColor"
                           ></rect>
                         </svg>
-                      </TabsTrigger>
+                      </TabsTrigger> */}
                       <TabsTrigger value="edit">
                         <span className="sr-only">Edit</span>
                         <svg
@@ -288,10 +288,10 @@ export default function PlaygroundPage() {
                     </DemoContainer> */}
                     <div className="flex items-center space-x-2">
                       <Button>Submit</Button>
-                      <Button variant="secondary">
-                        <span className="sr-only">Show history</span>
-                        <CounterClockwiseClockIcon className="h-4 w-4" />
-                      </Button>
+                      {/* <Button variant="secondary"> */}
+                        {/* <span className="sr-only">Show history</span> */}
+                        {/* <CounterClockwiseClockIcon className="h-4 w-4" /> */}
+                      {/* </Button> */}
                     </div>
                   </div>
                 </TabsContent>
@@ -307,8 +307,8 @@ export default function PlaygroundPage() {
                     <div className="flex items-center space-x-2">
                       <Button>Submit</Button>
                       <Button variant="secondary">
-                        <span className="sr-only">Show history</span>
-                        <CounterClockwiseClockIcon className="h-4 w-4" />
+                        {/* <span className="sr-only">Show history</span> */}
+                        {/* <CounterClockwiseClockIcon className="h-4 w-4" /> */}
                       </Button>
                     </div>
                   </div>

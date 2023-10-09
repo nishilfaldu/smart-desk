@@ -32,6 +32,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
+import { message } from "antd"
 
 
 const accountFormSchema = z.object({
@@ -67,6 +68,22 @@ export function AccountForm() {
     defaultValues,
   })
 
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Updated name and username successfully',
+    });
+  };
+
+  const error_ = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'There was an error while updating account information',
+    });
+  };
+
   function onSubmit(data: AccountFormValues) {
     console.log(data);
 
@@ -99,14 +116,17 @@ export function AccountForm() {
       if (response.ok) {
         const result = await response.json();
         console.log('User updated successfully:', result.message);
+        success();
         // Handle success, e.g., show a success message to the user
       } else {
         const errorData = await response.json();
         console.error('Error updating user:', errorData.error);
+        error_()
         // Handle error, e.g., display an error message to the user
       }
     } catch (error) {
       console.error('Error updating user:', error);
+      error_();
       // Handle unexpected errors, e.g., network issues
     }
   };
@@ -115,6 +135,7 @@ export function AccountForm() {
 
   return (
     <Form {...form}>
+      {contextHolder}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -140,7 +161,7 @@ export function AccountForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="Your username" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name.
