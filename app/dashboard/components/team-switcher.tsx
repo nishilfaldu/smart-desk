@@ -84,7 +84,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       const membersInfo = [
         {
           label: "Personal Account",
-          teams: rows.map((row) => ({
+          teams: rows.map((row: any) => ({
             label: row.name,
             value: "personal"
           }))
@@ -138,7 +138,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <CommandEmpty>No user found.</CommandEmpty>
               {membersInfo.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
-                  {group.teams.map((team) => (
+                  {group.teams.map((team: any) => (
                     <CommandItem
                       key={team.value}
                       onSelect={() => {

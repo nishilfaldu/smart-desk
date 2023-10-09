@@ -40,7 +40,6 @@ import { presets } from "./data/presets"
 import Editor from "@/components/Editor"
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { DemoShareDocument } from "../general/components/share-document";
 
 // export const metadata: Metadata = {
 //   title: "Playground",

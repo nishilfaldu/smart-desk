@@ -102,7 +102,7 @@ export function DisplayForm() {
                               //         (value) => value !== item.id
                               //       )
                               //     )
-                              setCurrentDisplay((prevDisplayContext) => ({
+                              setCurrentDisplay((prevDisplayContext: any) => ({
                                 ...prevDisplayContext,
                                 [item.id]: checked,
                               }));

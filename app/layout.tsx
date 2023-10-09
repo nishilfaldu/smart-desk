@@ -48,7 +48,7 @@ export default function RootLayout({
                   <ArrowRightIcon className="ml-1 h-4 w-4" />
                 </Link>
                 <PageHeaderHeading className="hidden md:block">
-                  Check out it's User Interface
+                  Check out its User Interface
                 </PageHeaderHeading>
                 <PageHeaderHeading className="md:hidden">Examples</PageHeaderHeading>
                 <PageHeaderDescription>
