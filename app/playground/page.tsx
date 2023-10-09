@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next"
 import Image from "next/image"
 import { CounterClockwiseClockIcon } from "@radix-ui/react-icons"
@@ -17,6 +19,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 import { CodeViewer } from "./components/code-viewer"
 import { MaxLengthSelector } from "./components/maxlength-selector"
@@ -29,10 +37,28 @@ import { TemperatureSelector } from "./components/temperature-selector"
 import { TopPSelector } from "./components/top-p-selector"
 import { models, types } from "./data/models"
 import { presets } from "./data/presets"
+import Editor from "@/components/Editor"
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "Playground",
-  description: "The OpenAI Playground built using the components.",
+// export const metadata: Metadata = {
+//   title: "Playground",
+//   description: "The OpenAI Playground built using the components.",
+// }
+
+function DemoContainer({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-center [&>div]:w-full",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
 export default function PlaygroundPage() {
@@ -58,13 +84,10 @@ export default function PlaygroundPage() {
         <div className="container flex flex-col items-start justify-between space-y-2 py-4 sm:flex-row sm:items-center sm:space-y-0 md:h-16">
           <h2 className="text-lg font-semibold">Playground</h2>
           <div className="ml-auto flex w-full space-x-2 sm:justify-end">
-            <PresetSelector presets={presets} />
             <PresetSave />
             <div className="hidden space-x-2 md:flex">
-              <CodeViewer />
               <PresetShare />
             </div>
-            <PresetActions />
           </div>
         </div>
         <Separator />
@@ -86,187 +109,188 @@ export default function PlaygroundPage() {
                       instructions to edit it.
                     </HoverCardContent>
                   </HoverCard>
-                  <TabsList className="grid grid-cols-3">
-                    <TabsTrigger value="complete">
-                      <span className="sr-only">Complete</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        className="h-5 w-5"
-                      >
-                        <rect
-                          x="4"
-                          y="3"
-                          width="12"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="7"
-                          width="12"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="11"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="15"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="8.5"
-                          y="11"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="8.5"
-                          y="15"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="13"
-                          y="11"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                      </svg>
-                    </TabsTrigger>
-                    <TabsTrigger value="insert">
-                      <span className="sr-only">Insert</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        className="h-5 w-5"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M14.491 7.769a.888.888 0 0 1 .287.648.888.888 0 0 1-.287.648l-3.916 3.667a1.013 1.013 0 0 1-.692.268c-.26 0-.509-.097-.692-.268L5.275 9.065A.886.886 0 0 1 5 8.42a.889.889 0 0 1 .287-.64c.181-.17.427-.267.683-.269.257-.002.504.09.69.258L8.903 9.87V3.917c0-.243.103-.477.287-.649.183-.171.432-.268.692-.268.26 0 .509.097.692.268a.888.888 0 0 1 .287.649V9.87l2.245-2.102c.183-.172.432-.269.692-.269.26 0 .508.097.692.269Z"
-                          fill="currentColor"
-                        ></path>
-                        <rect
-                          x="4"
-                          y="15"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="8.5"
-                          y="15"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="13"
-                          y="15"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                      </svg>
-                    </TabsTrigger>
-                    <TabsTrigger value="edit">
-                      <span className="sr-only">Edit</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        className="h-5 w-5"
-                      >
-                        <rect
-                          x="4"
-                          y="3"
-                          width="12"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="7"
-                          width="12"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="11"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="4"
-                          y="15"
-                          width="4"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <rect
-                          x="8.5"
-                          y="11"
-                          width="3"
-                          height="2"
-                          rx="1"
-                          fill="currentColor"
-                        ></rect>
-                        <path
-                          d="M17.154 11.346a1.182 1.182 0 0 0-1.671 0L11 15.829V17.5h1.671l4.483-4.483a1.182 1.182 0 0 0 0-1.671Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </TabsTrigger>
-                  </TabsList>
+                    <TabsList className="grid grid-cols-2">
+                      <TabsTrigger value="complete">
+                        <span className="sr-only">Complete</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className="h-5 w-5"
+                        >
+                          <rect
+                            x="4"
+                            y="3"
+                            width="12"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="7"
+                            width="12"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="11"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="15"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="8.5"
+                            y="11"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="8.5"
+                            y="15"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="13"
+                            y="11"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                        </svg>
+                      </TabsTrigger>
+                      {/* <TabsTrigger value="insert">
+                        <span className="sr-only">Insert</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className="h-5 w-5"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M14.491 7.769a.888.888 0 0 1 .287.648.888.888 0 0 1-.287.648l-3.916 3.667a1.013 1.013 0 0 1-.692.268c-.26 0-.509-.097-.692-.268L5.275 9.065A.886.886 0 0 1 5 8.42a.889.889 0 0 1 .287-.64c.181-.17.427-.267.683-.269.257-.002.504.09.69.258L8.903 9.87V3.917c0-.243.103-.477.287-.649.183-.171.432-.268.692-.268.26 0 .509.097.692.268a.888.888 0 0 1 .287.649V9.87l2.245-2.102c.183-.172.432-.269.692-.269.26 0 .508.097.692.269Z"
+                            fill="currentColor"
+                          ></path>
+                          <rect
+                            x="4"
+                            y="15"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="8.5"
+                            y="15"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="13"
+                            y="15"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                        </svg>
+                      </TabsTrigger> */}
+                      <TabsTrigger value="edit">
+                        <span className="sr-only">Edit</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          className="h-5 w-5"
+                        >
+                          <rect
+                            x="4"
+                            y="3"
+                            width="12"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="7"
+                            width="12"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="11"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="4"
+                            y="15"
+                            width="4"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <rect
+                            x="8.5"
+                            y="11"
+                            width="3"
+                            height="2"
+                            rx="1"
+                            fill="currentColor"
+                          ></rect>
+                          <path
+                            d="M17.154 11.346a1.182 1.182 0 0 0-1.671 0L11 15.829V17.5h1.671l4.483-4.483a1.182 1.182 0 0 0 0-1.671Z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </TabsTrigger>
+                    </TabsList>
+                  
                 </div>
-                <ModelSelector types={types} models={models} />
-                <TemperatureSelector defaultValue={[0.56]} />
-                <MaxLengthSelector defaultValue={[256]} />
-                <TopPSelector defaultValue={[0.9]} />
+                {/* <ModelSelector types={types} models={models} /> */}
               </div>
               <div className="md:order-1">
                 <TabsContent value="complete" className="mt-0 border-0 p-0">
                   <div className="flex h-full flex-col space-y-4">
                     <Textarea
-                      placeholder="Write a tagline for an ice cream shop"
+                      placeholder="Write your heart out"
                       className="min-h-[400px] flex-1 p-4 md:min-h-[700px] lg:min-h-[700px]"
                     />
+                    {/* <DemoContainer>
+                      <DemoShareDocument />
+                    </DemoContainer> */}
                     <div className="flex items-center space-x-2">
                       <Button>Submit</Button>
-                      <Button variant="secondary">
-                        <span className="sr-only">Show history</span>
-                        <CounterClockwiseClockIcon className="h-4 w-4" />
-                      </Button>
+                      {/* <Button variant="secondary"> */}
+                        {/* <span className="sr-only">Show history</span> */}
+                        {/* <CounterClockwiseClockIcon className="h-4 w-4" /> */}
+                      {/* </Button> */}
                     </div>
                   </div>
                 </TabsContent>
@@ -282,8 +306,8 @@ export default function PlaygroundPage() {
                     <div className="flex items-center space-x-2">
                       <Button>Submit</Button>
                       <Button variant="secondary">
-                        <span className="sr-only">Show history</span>
-                        <CounterClockwiseClockIcon className="h-4 w-4" />
+                        {/* <span className="sr-only">Show history</span> */}
+                        {/* <CounterClockwiseClockIcon className="h-4 w-4" /> */}
                       </Button>
                     </div>
                   </div>
@@ -292,30 +316,16 @@ export default function PlaygroundPage() {
                   <div className="flex flex-col space-y-4">
                     <div className="grid h-full gap-6 lg:grid-cols-2">
                       <div className="flex flex-col space-y-4">
-                        <div className="flex flex-1 flex-col space-y-2">
-                          <Label htmlFor="input">Input</Label>
-                          <Textarea
-                            id="input"
-                            placeholder="We is going to the market."
-                            className="flex-1 lg:min-h-[580px]"
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-2">
-                          <Label htmlFor="instructions">Instructions</Label>
-                          <Textarea
-                            id="instructions"
-                            placeholder="Fix the grammar."
-                          />
-                        </div>
                       </div>
-                      <div className="mt-[21px] min-h-[400px] rounded-md border bg-muted lg:min-h-[700px]" />
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Button>Submit</Button>
-                      <Button variant="secondary">
+                      <Link href="/playground/editor" target="_blank">
+                        <Button>Go to Editor</Button>
+                      </Link>
+                      {/* <Button variant="secondary">
                         <span className="sr-only">Show history</span>
                         <CounterClockwiseClockIcon className="h-4 w-4" />
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </TabsContent>

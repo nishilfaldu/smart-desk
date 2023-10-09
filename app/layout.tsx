@@ -10,6 +10,8 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { ExamplesNav } from "@/components/ExamplesNav";
 import { buttonVariants } from "@/registry/default/ui/button";
+import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
+import Editor from "@/components/Editor";
 
 
 
@@ -41,19 +43,19 @@ export default function RootLayout({
                   🎉 <Separator className="mx-2 h-4" orientation="vertical" />{" "}
                   <span className="sm:hidden">Style, a new CLI and more.</span>
                   <span className="hidden sm:inline">
-                    Introducing Smarty, a new UI for a Smart Desk.
+                    Introducing IntelliDesk, a new UI for a Smart Desk.
                   </span>
                   <ArrowRightIcon className="ml-1 h-4 w-4" />
                 </Link>
                 <PageHeaderHeading className="hidden md:block">
-                  Check out it's User Interface
+                  Check out its User Interface
                 </PageHeaderHeading>
                 <PageHeaderHeading className="md:hidden">Examples</PageHeaderHeading>
                 <PageHeaderDescription>
                   Dashboard, settings, authentication, and much more.
                 </PageHeaderDescription>
                 <section className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
-                  <Link
+                  {/* <Link
                     href="/docs"
                     className={cn(buttonVariants(), "rounded-[6px]")}
                   >
@@ -67,7 +69,7 @@ export default function RootLayout({
                     )}
                   >
                     Components
-                  </Link>
+                  </Link> */}
                 </section>
               </PageHeader>
               <section>
@@ -79,6 +81,8 @@ export default function RootLayout({
             </div>
           </>
         </ThemeProvider>
+        <DefaultToaster/>
+        {/* {/* <Editor/> */}
       </body>
     </html>
   );

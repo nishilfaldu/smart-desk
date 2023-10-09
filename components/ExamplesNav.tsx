@@ -6,40 +6,37 @@ import { ArrowRightIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
 import { ScrollArea, ScrollBar } from "./ui/scroll-area"
+import { useContext, useState } from "react"
+import { DisplayContext } from "./ThemeProvider"
 
 const examples = [
   {
     name: "Dashboard",
+    id: "dashboard",
     href: "/dashboard",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/dashboard",
   },
   {
-    name: "Cards",
-    href: "/cards",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/cards",
-  },
-  {
     name: "Tasks",
+    id: "tasks",
     href: "/tasks",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/tasks",
   },
   {
-    name: "Playground",
+    name: "Workspace",
+    id: "workspace",
     href: "/playground",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/playground",
   },
   {
-    name: "Forms",
-    href: "/forms",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/forms",
-  },
-  {
-    name: "Music",
-    href: "/music",
-    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/music",
+    name: "Settings",
+    id: "settings",
+    href: "/settings",
+    code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/settings",
   },
   {
     name: "Authentication",
+    id: "authentication",
     href: "/authentication",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/examples/authentication",
   },
@@ -48,13 +45,17 @@ const examples = [
 interface ExamplesNavProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function ExamplesNav({ className, ...props }: ExamplesNavProps) {
+  const {displayContext, setCurrentDisplay} = useContext(DisplayContext);
   const pathname = usePathname()
+  // const [nav, setNav] = useState(examples.filter((ex) => displayContext[ex.id]));
+
+  const filteredNav = examples.filter((ex) => displayContext[ex.id]);
 
   return (
     <div className="relative">
       <ScrollArea className="max-w-[600px] lg:max-w-none">
         <div className={cn("mb-4 flex items-center", className)} {...props}>
-          {examples.map((example) => (
+          {filteredNav.map((example) => (
             <Link
               href={example.href}
               key={example.href}
