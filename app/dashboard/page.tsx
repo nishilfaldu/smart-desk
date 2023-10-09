@@ -11,6 +11,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { madeForYouAlbums } from "./data/albums"
 import { AlbumArtwork } from "./components/album-artwork"
 import { DataCards } from "./components/data-cards"
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -42,6 +44,15 @@ export default function DashboardPage() {
             <div className="ml-auto flex items-center space-x-4">
               {/* <Search /> */}
               {/* <UserNav /> */}
+              <Link
+          href="https://github.com/nishilfaldu/smart-desk"
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "absolute right-4 top-4 md:right-8 md:top-8"
+          )}
+        >
+          View Code
+        </Link>
             </div>
           </div>
         </div>

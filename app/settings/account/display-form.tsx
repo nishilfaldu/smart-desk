@@ -16,6 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { toast } from "@/components/ui/use-toast"
+import { useContext } from "react"
+import { DisplayContext } from "@/components/ThemeProvider"
 
 const items = [
   {
@@ -29,10 +31,6 @@ const items = [
   {
     id: "workspace",
     label: "Workspace",
-  },
-  {
-    id: "settings",
-    label: "Settings",
   },
 ] as const
 
@@ -66,6 +64,8 @@ export function DisplayForm() {
     })
   }
 
+  const {displayContext, setCurrentDisplay} = useContext(DisplayContext);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -93,15 +93,23 @@ export function DisplayForm() {
                       >
                         <FormControl>
                           <Checkbox
-                            checked={field.value?.includes(item.id)}
+                            checked={displayContext[item.id]}
                             onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
+                              // return checked
+                              //   ? field.onChange([...field.value, item.id])
+                              //   : field.onChange(
+                              //       field.value?.filter(
+                              //         (value) => value !== item.id
+                              //       )
+                              //     )
+                              setCurrentDisplay((prevDisplayContext) => ({
+                                ...prevDisplayContext,
+                                [item.id]: checked,
+                              }));
+                              // setCurrentDisplay({
+                              //   [item.id]: false,
+                              //   ...displayContext,
+                              // })
                             }}
                           />
                         </FormControl>

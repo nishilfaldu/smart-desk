@@ -43,7 +43,7 @@ export default function RootLayout({
                   🎉 <Separator className="mx-2 h-4" orientation="vertical" />{" "}
                   <span className="sm:hidden">Style, a new CLI and more.</span>
                   <span className="hidden sm:inline">
-                    Introducing Smarty, a new UI for a Smart Desk.
+                    Introducing IntelliDesk, a new UI for a Smart Desk.
                   </span>
                   <ArrowRightIcon className="ml-1 h-4 w-4" />
                 </Link>
@@ -55,7 +55,7 @@ export default function RootLayout({
                   Dashboard, settings, authentication, and much more.
                 </PageHeaderDescription>
                 <section className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
-                  <Link
+                  {/* <Link
                     href="/docs"
                     className={cn(buttonVariants(), "rounded-[6px]")}
                   >
@@ -69,7 +69,7 @@ export default function RootLayout({
                     )}
                   >
                     Components
-                  </Link>
+                  </Link> */}
                 </section>
               </PageHeader>
               <section>

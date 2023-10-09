@@ -68,10 +68,10 @@ interface TeamSwitcherProps extends PopoverTriggerProps {}
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
+  const [membersInfo, setMembersInfo] = React.useState<{ label: string; teams: any; }[]>([])
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
     groups[0].teams[0]
   )
-  const [membersInfo, setMembersInfo] = React.useState<{ label: string; teams: any; }[]>([])
 
   const getAllUsers = async () => {
     try {
@@ -91,6 +91,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         },
       ]
       setMembersInfo(membersInfo);
+      setSelectedTeam(membersInfo[0].teams[0])
       console.log('Got all users successfully', result);
       // Handle success, e.g., show a success message to the user
     } else {
