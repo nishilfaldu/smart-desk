@@ -53,7 +53,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       
       let apiUrl = `http://localhost:3000/api/get-existing-user-or-create?email=${email}&password=${password}`;
       if(process.env.NEXT_PUBLIC_PRODUCTION) {
-        apiUrl = `http://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/get-existing-user-or-create?email=${email}&password=${password}`
+        apiUrl = `https://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/get-existing-user-or-create?email=${email}&password=${password}`
       }
       fetch(apiUrl)
         .then((response) => {

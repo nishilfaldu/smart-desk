@@ -77,7 +77,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     try {
       let apiUrl = "http://localhost:3000/api/get-all-users";
       if(process.env.NEXT_PUBLIC_PRODUCTION) {
-        apiUrl = `http://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/get-all-users`
+        apiUrl = `https://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/get-all-users`
       }
       const response = await fetch(apiUrl);
     if (response.ok) {

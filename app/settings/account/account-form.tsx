@@ -111,7 +111,7 @@ export function AccountForm() {
       
       let apiUrl = `http://localhost:3000/api/update-existing-user?email=${email}&username=${username}&name=${name}`;
       if(process.env.NEXT_PUBLIC_PRODUCTION) {
-        apiUrl = `http://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/update-existing-user?email=${email}&username=${username}&name=${name}`
+        apiUrl = `https://${process.env.NEXT_PUBLIC_DEPLOYMENT_LINK}/api/update-existing-user?email=${email}&username=${username}&name=${name}`
       }
       // Make the PUT request
       const response = await fetch(apiUrl);
