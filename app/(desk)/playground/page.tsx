@@ -319,7 +319,7 @@ export default function PlaygroundPage() {
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Link href="/playground/editor" target="_blank">
+                      <Link href="/editor" target="_blank">
                         <Button>Go to Editor</Button>
                       </Link>
                       {/* <Button variant="secondary">

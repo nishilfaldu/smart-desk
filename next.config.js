@@ -6,6 +6,9 @@ const nextConfig = {
       // You will see this message during linting: "Pages directory cannot be found at /workspace/client/pages or /workspace/client/src/pages. If using a custom path, please configure with the `no-html-link-for-pages` rule in your eslint config file."
       dirs: ["."],
     },
+    experimental: {
+      appDocumentPreloading: true,
+    },
     modularizeImports: {
       lodash: {
         transform: "lodash/{{member}}",
